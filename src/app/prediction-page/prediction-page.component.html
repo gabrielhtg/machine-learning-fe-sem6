@@ -1,0 +1,125 @@
+<div class="hero min-h-screen">
+  <div class="hero-content text-center w-full">
+    <div class="w-full">
+      <div class="flex justify-center">
+        <h1 class="font-bold text-4xl mb-5 max-w-xl">Predict if the Customer will Leave the Bank</h1>
+      </div>
+      <form [formGroup]="predictForm" (ngSubmit)="onSubmit()">
+        <div class="w-full flex gap-5 justify-center">
+          <div class="w-full flex flex-col items-center justify-items-center max-w-md">
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Name</span>
+              </div>
+              <input type="text" formControlName="nama" placeholder="Type here" class="input input-bordered w-full"/>
+            </label>
+
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Country</span>
+              </div>
+              <select class="select select-bordered" formControlName="country" >
+                <option value="" disabled selected>Select your Country</option>
+                <option *ngFor="let country of countries" [value]="country.kode_country">{{country.nama_country}}</option>
+              </select>
+            </label>
+
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Credit Score</span>
+              </div>
+              <input type="number" formControlName="credit" placeholder="0" class="input input-bordered w-full"/>
+            </label>
+
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Gender</span>
+              </div>
+              <select formControlName="gender" class="select select-bordered w-full" >
+                <option value="" disabled selected>Pick one</option>
+                <option *ngFor="let gender of genders" [value]="gender.code">{{gender.nama_gender}}</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="w-full flex flex-col items-center justify-items-center max-w-md">
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Age</span>
+              </div>
+              <input type="number" formControlName="age" placeholder="0" class="input input-bordered w-full"/>
+            </label>
+
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Tenure</span>
+              </div>
+              <input type="number" formControlName="tenure" placeholder="0" class="input input-bordered w-full"/>
+            </label>
+
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Balance</span>
+              </div>
+              <input type="number" formControlName="balance" placeholder="0" class="input input-bordered w-full"/>
+            </label>
+
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Number of Products</span>
+              </div>
+              <input type="number" formControlName="numberOfProducts" placeholder="0" class="input input-bordered w-full"/>
+            </label>
+          </div>
+
+          <div class="w-full flex flex-col items-center justify-items-center max-w-md">
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Have Credit Card?</span>
+              </div>
+              <select formControlName="creditCard" class="select select-bordered w-full" >
+                <option value="" disabled selected>Pick one</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+            </label>
+
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Active Member?</span>
+              </div>
+              <select formControlName="activeMember" class="select select-bordered w-full" >
+                <option value="" disabled selected>Pick one</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+            </label>
+
+            <label class="form-control w-full mb-3">
+              <div class="label">
+                <span class="label-text">Estimated Salary</span>
+              </div>
+              <input type="number" formControlName="estimatedSalary" placeholder="0" class="input input-bordered w-full"/>
+            </label>
+          </div>
+        </div>
+        <button type="submit" onclick="my_modal_2.showModal()" class="btn btn-primary mt-5 mr-3 w-32">Predict</button>
+        <button type="reset" class="btn btn-outline mt-5 w-32">Clear</button>
+      </form>
+    </div>
+    <!-- Open the modal using ID.showModal() method -->
+    <dialog id="my_modal_2" class="modal">
+      <div class="modal-box">
+        <div class="mockup-code text-start">
+          <pre data-prefix="$"><code>predict</code></pre>
+          <pre data-prefix=">" class="text-warning"><code>Predicting {{loadingAnimation}}</code></pre>
+          <pre data-prefix=">" class="text-success {{predictionVisibility}}"><code>Prediction Done!</code></pre>
+          <pre data-prefix=">" class="{{predictionVisibility}}"><code>Result : {{predictionResult}}</code></pre>
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+  </div>
+</div>

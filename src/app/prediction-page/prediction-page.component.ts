@@ -68,6 +68,8 @@ export class PredictionPageComponent implements OnInit {
       estimated_salary : this.predictForm.value.estimatedSalary,
     }
 
+    console.log(predictionData)
+
     const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
     const startLoadingAnimation = async () => {
@@ -80,12 +82,19 @@ export class PredictionPageComponent implements OnInit {
         next: (value : any) => {
           this.predictionVisibility = ""
           this.resultVisibility = ""
-          this.predictionResult = value.data
+          const temp = value.data
+
+          if (temp === "True") {
+            this.predictionResult = "True -> Customer will Leave the Bank"
+          }
+          else {
+            this.predictionResult = "False -> Customer will not Leave the Bank"
+          }
+
         },
         error : err => {
           this.predictionVisibility = ""
           this.resultVisibility = ""
-          this.predictionResult = err.error.error
         }
       })
     };
